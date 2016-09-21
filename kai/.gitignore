@@ -77,4 +77,4 @@ mongod
 
 # Ignore files that includes credentials
 # ====================================
-env/development.js
+config/env/development.js
