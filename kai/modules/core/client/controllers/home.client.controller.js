@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['UsersService', '$location', 'Authentication'];
+  HomeController.$inject = ['$state', 'UsersService', '$location', 'Authentication'];
 
-  function HomeController(UsersService, $location, Authentication) {
+  function HomeController($state, UsersService, $location, Authentication) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,7 +18,7 @@
     } else {
       // Redirect to Sign in page
       // i.e. this makes the Sign in Page the landing page
-      $location.path('/signin?err');
+      $state.go('authentication.signin');
     }
   }
 }());
