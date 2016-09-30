@@ -13,12 +13,12 @@
     vm.authentication = Authentication;
 
     // If user is signed in then redirect back home
-    if (vm.authentication.user) {
-      $location.path('/');
-    } else {
-      // Redirect to Sign in page
-      // i.e. this makes the Sign in Page the landing page
-      $state.go('authentication.signin');
-    }
+    // if (vm.authentication.user) {
+    //   $location.path('/');
+    // } else {
+    //   // Redirect to Sign in page
+    //   // i.e. this makes the Sign in Page the landing page
+    //   $state.go('authentication.signin');
+    // }
   }
 }());
