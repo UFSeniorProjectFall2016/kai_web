@@ -13,9 +13,9 @@
     vm.authentication = Authentication;
 
     // If user is signed in then redirect back home
-    if (!vm.authentication.user) {
-      $location.path('/authentication/signin');
-      $state.go('authentication.signin');
-    }
+    // if (!vm.authentication.user) {
+    //   $location.path('/authentication/signin');
+    //   $state.go('authentication.signin');
+    // }
   }
 }());

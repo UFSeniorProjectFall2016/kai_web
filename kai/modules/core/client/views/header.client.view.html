@@ -1,8 +1,10 @@
 <div ng-controller="HeaderController as vm">
-  <!-- My version of navBar -->
-    <div layout="row" class="md-theme-light">
-       <h1 class="md-toolbar-tools">Sidenav</h1>
-    </div>
+  <!-- My modified version of the header -->
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleLeft()" ng-hide="isOpenLeft()" class="md-icon-button md-primary">
+      <md-icon md-svg-icon="modules/core/client/img/icons/menu.svg"></md-icon>
+    </md-button>
+  </div>
 
   <!-- <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
