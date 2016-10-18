@@ -23,12 +23,12 @@
     }
 
     // Menu Toolbar
-    // $scope.menu = false;
-    // if (vm.authentication.user) {
-    //   $scope.menu = true;
-    // } else {
-    //   $scope.menu = false;
-    // }
+    $scope.menu = false;
+    if (vm.authentication.user) {
+      $scope.menu = true;
+    } else {
+      $scope.menu = false;
+    }
 
     // Added for Side navigation
     $scope.toggleLeft = buildToggler('left');

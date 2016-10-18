@@ -41,7 +41,7 @@
 <body class="ng-cloak" layout="column">
 
   <!-- Container #1 (see wireframe) -->
-  <md-toolbar layout="row" class="md-toolbar-tools" md-whiteframe="4">
+  <md-toolbar layout="row" ng-hide="!menu" class="md-toolbar-tools" md-whiteframe="4">
     <div ng-include="'/modules/core/client/views/menu.client.view.html'"></div>
   </md-toolbar>
 
