@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
   <base href="/">
   <title page-title></title>
   <meta name="description" content="{{description}}">
@@ -31,17 +31,58 @@
   <!-- Fav Icon -->
   <link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
+  <!-- Loading Google Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- Application CSS Files -->
   {{#each cssFiles}}<link rel="stylesheet" href="{{this}}">{{/each}}
 </head>
 
-<body class="ng-cloak">
-  <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-  <section class="content">
+<body class="ng-cloak" layout="column">
+
+  <!-- Container #1 (see wireframe) -->
+  <md-toolbar layout="row" class="md-toolbar-tools" md-whiteframe="4">
+    <div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
+  </md-toolbar>
+
+  <!-- Container #2 -->
+  <div flex layout="row">
+
+    <!-- Container #3 -->
+    <md-sidenav class="md-sidenav-left" md-component-id="left">
+      <md-content ng-include="'/modules/core/client/views/sideMenu.client.view.html'">
+      </md-content>
+    </md-sidenav>
+
+    <!-- Container #4 -->
+    <md-content flex id="content">
+      {{{block "content"}}}
+    </md-content>
+
+  </div>
+
+
+    <!-- <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+        <md-content ng-include="'/modules/core/client/views/header.client.view.html'">
+        </md-content>
+      </md-sidenav>
+
+      <div flex>
+        <md-content flex layout-padding>
+          {{{block "content"}}}
+        </md-content>
+      </div>
+    </section>
+  </div> -->
+
+  <!-- OLD MEANJS Structure -->
+  <!-- <section class="content">
+    <header ng-include="'/modules/core/client/views/menu.client.view.html'" class="navbar navbar-fixed-top navbar-default"></header>
     <section class="container">
       {{{block "content"}}}
     </section>
-  </section>
+  </section> -->
 
   <noscript>
     <style>
@@ -65,7 +106,7 @@
 
   <!--Application JavaScript Files-->
     {{#each jsFiles}}<script type="text/javascript" src="{{this}}"></script>{{/each}}
-  
+
   <!--owasp config sync-->
   <script type="text/javascript">
     var sharedConfig = {{{ sharedConfig }}};
