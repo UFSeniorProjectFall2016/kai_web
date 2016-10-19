@@ -34,6 +34,6 @@
 
 /*CUSTOM CSS ADDED BY KC*/
 /*Login CSS*/
-.SignInPage .green {
-  background: #b9f6ca;
+.SignInBox {
+  margin-top: 8%;
 }
