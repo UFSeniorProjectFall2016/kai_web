@@ -38,10 +38,10 @@
   {{#each cssFiles}}<link rel="stylesheet" href="{{this}}">{{/each}}
 </head>
 
-<body class="ng-cloak" layout="column">
+<body class="ng-cloak" layout="column" ng-controller="HeaderController as vmLogin">
 
   <!-- Container #1 (see wireframe) -->
-  <md-toolbar layout="row" class="md-toolbar-tools" md-whiteframe="4">
+  <md-toolbar md-whiteframe="4" class="md-theme-light" ng-show="vmLogin.authentication.user">
     <div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
   </md-toolbar>
 
