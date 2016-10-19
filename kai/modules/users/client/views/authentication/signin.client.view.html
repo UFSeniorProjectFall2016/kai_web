@@ -1,5 +1,5 @@
 <div>
-  <h3 class="col-xs-12 text-center">Or with your account</h3>
+  <!-- <h3 class="col-xs-12 text-center">Or with your account</h3>
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
     <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
@@ -33,5 +33,34 @@
         </uib-alert>
       </fieldset>
     </form>
-  </div>
+  </div> -->
+
+  <md-content>
+      <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+        <md-input-container class="md-block">
+    			<label>Username</label>
+    			<input required name="username" ng-model="vm.credentials.username">
+          <div ng-messages="vm.userForm.username.$error">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+    		</md-input-container>
+    		<md-input-container class="md-block">
+    			<label>Password</label>
+    			<input required name "password" ng-model="vm.credentials.password" type="password">
+          <div ng-messages="vm.userForm.password.$error">
+            <p class="help-block error-text" ng-message="required">Password is required.</p>
+          </div>
+    		</md-input-container>
+    		<md-input-container class="md-block">
+    			<md-button type="submit" class="md-raised md-primary" layout-fill>Sign In</md-button>
+    		</md-input-container>
+        <hr/ layout-fill>
+        <md-input-container class="md-block">
+          <div layout="row" layout-align="space-around" layout-padding>
+            <a ui-sref="password.forgot" layout="column" layout-align="start start" layout-fill>Forgot your password?</a>
+            <a ui-sref="authentication.signup" layout="column"  layout-align="end end" layout-fill>Create account</a>
+          </div>
+    		</md-input-container>
+      </form>
+	</md-content>
 </div>
