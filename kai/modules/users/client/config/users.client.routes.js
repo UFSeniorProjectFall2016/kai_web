@@ -11,6 +11,15 @@
   function routeConfig($stateProvider) {
     // Users state routing
     $stateProvider
+      .state('profileView', {
+        url: '/profileView',
+        templateUrl: 'modules/users/client/views/settings/profile-view.client.view.html',
+        controller: 'ProfileViewController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
       .state('settings', {
         abstract: true,
         url: '/settings',

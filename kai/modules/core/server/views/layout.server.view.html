@@ -38,21 +38,21 @@
   {{#each cssFiles}}<link rel="stylesheet" href="{{this}}">{{/each}}
 </head>
 
-<body class="ng-cloak" layout="column">
+<body class="ng-cloak" layout="row" ng-controller="HeaderController as vmLogin">
 
-  <!-- Container #1 (see wireframe) -->
-  <md-toolbar layout="row" class="md-toolbar-tools" md-whiteframe="4">
-    <div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
-  </md-toolbar>
+  <!-- Container #3 -->
+  <md-sidenav class="md-sidenav-left" md-component-id="left" ng-show="vmLogin.authentication.user" md-is-locked-open="$mdMedia('gt-md')"
+      md-whiteframe="4">
+    <md-content ng-include="'/modules/core/client/views/sideMenu.client.view.html'">
+    </md-content>
+  </md-sidenav>
 
   <!-- Container #2 -->
-  <div flex layout="row">
-
-    <!-- Container #3 -->
-    <md-sidenav class="md-sidenav-left" md-component-id="left">
-      <md-content ng-include="'/modules/core/client/views/sideMenu.client.view.html'">
-      </md-content>
-    </md-sidenav>
+  <div flex layout="column">
+    <!-- Container #1 (see wireframe) -->
+    <md-toolbar md-whiteframe="1" class="md-theme-light" ng-show="vmLogin.authentication.user" hide-gt-sm>
+      <div ng-include="'/modules/core/client/views/header.client.view.html'"></div>
+    </md-toolbar>
 
     <!-- Container #4 -->
     <md-content flex id="content">
