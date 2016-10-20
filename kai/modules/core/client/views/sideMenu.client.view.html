@@ -10,7 +10,7 @@
     <md-divider></md-divider>
     <md-content>
       <md-list>
-        <md-list-item ng-repeat="item in head.accountMenu.items">
+        <!-- <md-list-item ng-repeat="item in head.accountMenu.items">
           <a layout="row" ui-sref="{{item.state}}">
             <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
             <img ng-src="{{head.authentication.user.profileImageURL}}" class="md-avatar" alt="{{phone.options.face}}"
@@ -20,6 +20,9 @@
           <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
             <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
           </md-button>
+        </md-list-item> -->
+        <md-list-item>
+          <a ui-sref="profileView">Profile</a>
         </md-list-item>
         <md-divider layout-fill></md-divider>
         <md-list-item>

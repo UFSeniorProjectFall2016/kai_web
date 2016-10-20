@@ -37,3 +37,16 @@
 .SignInBox {
   margin-top: 8%;
 }
+
+.red {
+  background: #ff8a80;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /*filter:blur(1px);*/
+  /*opacity: 0;*/
+}
+
+.red #userInfo {
+  background: none;
+  opacity: 1;
+}
