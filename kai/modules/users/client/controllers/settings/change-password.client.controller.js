@@ -14,6 +14,7 @@
     vm.changeUserPassword = changeUserPassword;
     vm.getPopoverMsg = PasswordValidator.getPopoverMsg;
 
+
     // Change user password
     function changeUserPassword(isValid) {
       vm.success = vm.error = null;
