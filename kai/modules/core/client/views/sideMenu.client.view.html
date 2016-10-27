@@ -1,7 +1,48 @@
 <div ng-controller="HeaderController as head">
   <!-- Side Menu -->
   <div layout-fill ng-show="head.authentication.user">
-    <div class="md-whiteframe-1dp" layout="column" layout-padding>
+
+    <!-- New Side Menu -->
+    <md-card class="red" layout-fill>
+      <md-card-title id="userInfo" layout="column" layout-gt-sm="row" layout-align="space-around center" layout-padding>
+        <md-card-title-media>
+          <img style="opacity:!important" ng-src="{{vm.authentication.user.profileImageURL}}" class="img-responsive img-circle md-media-lg" alt="{{vm.authentication.user.displayName}}"/>
+        </md-card-title-media>
+        <md-card-title-text layout-align="center center">
+          <span class="md-headline">{{vm.authentication.user.displayName}}</span>
+          <span class="md-subhead">{{vm.authentication.user.email}}</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+    <md-menu-content width="12">
+      <md-menu-item>
+        <md-button ui-sref="home" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_home_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Home</span>
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ui-sref="profileView" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_account_circle_black_24px.svg"></md-icon>
+          <span md-menu-align-target>User Profile</span>
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_devices_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Devices</span>
+        </md-button>
+      </md-menu-item>
+      <md-divider layout-fill></md-divider>
+      <md-menu-item>
+        <md-button href="/api/auth/signout" target="_self" class="red" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_highlight_off_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Logout</span>
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+
+    <!-- <div class="md-whiteframe-1dp" layout="column" layout-padding>
       <div>
         <img ng-src="{{head.authentication.user.profileImageURL}}" class="md-avatar" alt="{{vm.authentication.user.displayName}}" class="md-user-avatar"/>
       </div>
@@ -10,17 +51,6 @@
     <md-divider></md-divider>
     <md-content>
       <md-list>
-        <!-- <md-list-item ng-repeat="item in head.accountMenu.items">
-          <a layout="row" ui-sref="{{item.state}}">
-            <md-icon md-svg-icon="{{phone.options.icon}}" ng-if="phone.options.icon" ng-class="{'md-avatar-icon': phone.options.avatarIcon}"></md-icon>
-            <img ng-src="{{head.authentication.user.profileImageURL}}" class="md-avatar" alt="{{phone.options.face}}"
-                 ng-if="true"/>
-            <h4 layout="row" layout-align="center center" ng-class="md-offset" ng-bind="item.title"></h4>
-          </a>
-          <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-          </md-button>
-        </md-list-item> -->
         <md-list-item>
           <a ui-sref="profileView">Profile</a>
         </md-list-item>
@@ -31,8 +61,7 @@
           </a>
         </md-list-item>
       </md-list>
+    </md-content> -->
 
-
-    </md-content>
   </div>
 </div>
