@@ -1,5 +1,4 @@
 <div ng-controller="HeaderController as head">
-  <!-- Side Menu -->
   <div layout-fill ng-show="head.authentication.user">
 
     <!-- New Side Menu -->
@@ -47,27 +46,5 @@
         </md-button>
       </md-menu-item>
     </md-menu-content>
-
-    <!-- <div class="md-whiteframe-1dp" layout="column" layout-padding>
-      <div>
-        <img ng-src="{{head.authentication.user.profileImageURL}}" class="md-avatar" alt="{{vm.authentication.user.displayName}}" class="md-user-avatar"/>
-      </div>
-      <span class="md-title" ng-bind="head.authentication.user.displayName">Kinderley Charles</span>
-    </div>
-    <md-divider></md-divider>
-    <md-content>
-      <md-list>
-        <md-list-item>
-          <a ui-sref="profileView">Profile</a>
-        </md-list-item>
-        <md-divider layout-fill></md-divider>
-        <md-list-item>
-          <a href="/api/auth/signout" target="_self">
-            <md-button class="md-raised md-primary" layout-fill>Logout</md-button>
-          </a>
-        </md-list-item>
-      </md-list>
-    </md-content> -->
-
   </div>
 </div>
