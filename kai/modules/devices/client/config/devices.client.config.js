@@ -5,11 +5,11 @@
     .module('devices')
     .run(menuConfig);
 
-  menuConfig.$inject = ['Menus'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: 'Devices',
       state: 'devices',
       type: 'dropdown',
@@ -17,13 +17,13 @@
     });
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'devices', {
+    menuService.addSubMenuItem('topbar', 'devices', {
       title: 'List Devices',
       state: 'devices.list'
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'devices', {
+    menuService.addSubMenuItem('topbar', 'devices', {
       title: 'Create Device',
       state: 'devices.create',
       roles: ['user']
