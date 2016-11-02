@@ -1,0 +1,50 @@
+<div ng-controller="HeaderController as head">
+  <div layout-fill ng-show="head.authentication.user">
+
+    <!-- New Side Menu -->
+    <md-card class="red" layout-fill>
+      <md-card-title id="userInfo" layout="column" layout-gt-sm="row" layout-align="space-around center" layout-padding>
+        <div layout="row" layout-align="space-between center" layout-fill>
+          <div layout-align="start center">
+            <md-card-title-media>
+              <img style="opacity:!important" ng-src="{{head.authentication.user.profileImageURL}}" class="img-responsive img-circle md-media-sm" alt="{{vm.authentication.user.displayName}}"/>
+            </md-card-title-media>
+          </div>
+          <div layout-align="end center">
+            <md-card-title-text layout-align="end center">
+              <span class="md-headline">{{head.authentication.user.displayName}}</span>
+              <span class="md-subhead">{{head.authentication.user.email}}</span>
+            </md-card-title-text>
+          </div>
+        </div>
+      </md-card-title>
+    </md-card>
+    <md-menu-content width="12">
+      <md-menu-item>
+        <md-button ui-sref="home" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_home_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Home</span>
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ui-sref="profileView" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_account_circle_black_24px.svg"></md-icon>
+          <span md-menu-align-target>User Profile</span>
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_devices_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Devices</span>
+        </md-button>
+      </md-menu-item>
+      <md-divider layout-fill></md-divider>
+      <md-menu-item>
+        <md-button href="/api/auth/signout" target="_self" ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons/ic_highlight_off_black_24px.svg"></md-icon>
+          <span md-menu-align-target>Logout</span>
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </div>
+</div>

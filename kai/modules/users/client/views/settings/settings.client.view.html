@@ -1,5 +1,6 @@
 <section>
-  <div class="page-header">
+  <!-- BootStrap old design -->
+  <!-- <div class="page-header">
     <h1>Settings</h1>
   </div>
   <div class="row">
@@ -22,5 +23,75 @@
     <div class="col-sm-9 col-md-8 settings-view">
       <div ui-view></div>
     </div>
-  </div>
+  </div> -->
+
+  <!-- Material New Design -->
+  <!-- <md-toolbar md-scroll-shrink ng-if="true">
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>Setting for now</span>
+      </h3>
+    </div>
+  </md-toolbar> -->
+
+  <!-- <div ng-controller="HeaderController as vm">
+    <div>
+      <img ng-src="{{vm.authentication.user.profileImageURL}}" class="md-avatar" alt="{{vm.authentication.user.displayName}}" class="md-user-avatar"/>
+    </div>
+    <span class="md-title" ng-bind="vm.authentication.user.displayName">Kinderley Charles</span>
+  </div> -->
+  <!-- class="md-no-sticky" -->
+  <!-- <md-subheader >
+    Not Sticky
+  </md-subheader>
+  <md-card class="red" layout-fill ng-controller="HeaderController as vm">
+    <md-card-title id="userInfo" layout="column" layout-gt-sm="row" layout-align="space-around center" layout-padding>
+      <md-card-title-media>
+        <img style="opacity:!important" ng-src="{{vm.authentication.user.profileImageURL}}" class="img-responsive img-circle md-media-lg" alt="{{vm.authentication.user.displayName}}"/>
+      </md-card-title-media>
+      <md-card-title-text>
+        <span class="md-headline">Card with image</span>
+        <span class="md-subhead">Extra Large</span>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card> -->
+  <!-- <md-grid-list
+        md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="1"
+        md-row-height-gt-md="4:1" md-row-height="4:1"
+        md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile class="red"
+          md-rowspan="2" md-rowspan-sm="3" md-colspan="1">
+          <div layout="column" layout-align="space-around center">
+            <img ng-src="{{vm.authentication.user.profileImageURL}}" class="md-avatar" alt="{{vm.authentication.user.displayName}}"/>
+            <h3>Name</h3>
+            <p>email</p>
+          <div>
+      </md-grid-tile>
+  </md-grid-list> -->
+
+  <!-- <md-list>
+    <md-list-item ng-repeat="item in [1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14]">
+      <img ng-src="{{item.face}}" alt="{{item.who}}" class="md-avatar">
+
+      <div class="md-list-item">
+        <h3>{{item}}</h3>
+        <h4>{{item.who}}</h4>
+
+        <p>
+          {{item.notes}}
+        </p>
+      </div>
+      <md-divider inset></md-divider>
+    </md-list-item>
+  </md-list> -->
+
+<!-- <md-menu-content width="12" ng-controller="SettingsController as vm">
+  <md-menu-item ng-repeat="item in vm.choice">
+    <md-button ui-sref="{{item._state}}" ng-show="vm.user.provider === 'local'">
+      <span md-menu-align-target>{{item._name}}</span>
+    </md-button>
+  </md-menu-item>
+</md-menu-content> -->
+
+<div ui-view></div>
 </section>

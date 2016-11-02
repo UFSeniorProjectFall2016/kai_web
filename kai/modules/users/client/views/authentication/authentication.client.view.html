@@ -1,5 +1,6 @@
-<section class="row">
-  <h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
+<div>
+  <!-- BootStrap old Design -->
+  <!-- <h3 class="col-md-12 text-center">Sign in using your social accounts</h3>
   <div class="col-md-12 text-center">
     <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png"></a></div>
     <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/twitter')" ng-src="/modules/users/client/img/buttons/twitter.png"></a></div>
@@ -8,5 +9,25 @@
     <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/github')" ng-src="/modules/users/client/img/buttons/github.png"></a></div>
     <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/paypal')"  ng-src="/modules/users/client/img/buttons/paypal.png"></a></div>
   </div>
-  <div ui-view></div>
-</section>
+  <div ui-view></div> -->
+
+  <!-- Angular Material Design -->
+  <div class="SignInBox" layout="row" layout-align="center end">
+    <md-whiteframe class="md-whiteframe-2dp" layout="column" flex-xs="100" flex-sm="70" flex-md="30" flex-lg="30" layout-padding>
+      <md-header layout="column" layout-align="space-between center" layout-padding>
+        Sign in
+      </md-header>
+      <div layout="row">
+        <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/facebook')" ng-src="/modules/users/client/img/buttons/facebook.png"></a></div>
+        <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/google')" ng-src="/modules/users/client/img/buttons/google.png"></a></div>
+        <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/linkedin')" ng-src="/modules/users/client/img/buttons/linkedin.png"></a></div>
+        <div class="social-account-container social-button"><a class="btn"><img class="img-responsive" ng-click="vm.callOauthProvider('/api/auth/github')" ng-src="/modules/users/client/img/buttons/github.png"></a></div>
+      </div>
+      <md-content>
+        <hr/ layout-fill>
+      </md-content>
+      <div ui-view></div>
+    </md-whiteframe>
+  </div>
+
+</div>

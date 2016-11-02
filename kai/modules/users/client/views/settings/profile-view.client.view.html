@@ -1,0 +1,24 @@
+<section ng-controller="ProfileViewController as vm">
+  <!-- <md-subheader >
+    Profile
+  </md-subheader> -->
+  <md-card class="red" layout-fill>
+    <md-card-title id="userInfo" layout="column" layout-gt-sm="row" layout-align="space-around center" layout-padding>
+      <md-card-title-media>
+        <img style="opacity:!important" ng-src="{{vm.authentication.user.profileImageURL}}" class="img-responsive img-circle md-media-lg" alt="{{vm.authentication.user.displayName}}"/>
+      </md-card-title-media>
+      <md-card-title-text layout-align="center center">
+        <span class="md-headline">{{vm.authentication.user.displayName}}</span>
+        <span class="md-subhead">{{vm.authentication.user.email}}</span>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-menu-content width="12">
+    <md-menu-item ng-repeat="item in vm.choice">
+      <md-button ui-sref="{{item._state}}" ng-show="vm.user.provider === 'local'">
+        <md-icon md-svg-icon="modules/core/client/img/icons/{{item._icon}}"></md-icon>
+        <span md-menu-align-target>{{item._name}}</span>
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</section>

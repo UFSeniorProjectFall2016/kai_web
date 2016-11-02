@@ -31,3 +31,17 @@
 .social-button:hover {
   opacity: 0.65;
 }
+
+/*CUSTOM CSS ADDED BY KC*/
+/*Login CSS*/
+.SignInBox {
+  margin-top: 8%;
+}
+
+.red {
+  background: #ff8a80;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /*filter:blur(1px);*/
+  /*opacity: 0;*/
+}
