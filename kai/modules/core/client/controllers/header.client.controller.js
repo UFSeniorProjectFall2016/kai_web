@@ -23,9 +23,9 @@
 
     // Added for Side navigation
     $scope.toggleLeft = buildToggler('left');
-    $scope.isOpenLeft = function() {
-      return $mdSidenav('left').isOpen();
-    };
+    // $scope.isOpenLeft = function() {
+    //   return $mdSidenav('left').isOpen();
+    // };
 
     function buildToggler(componentId) {
       return function() {
