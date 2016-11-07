@@ -12,4 +12,4 @@
 
     vm.devices = DevicesService.query();
   }
-})();
+}());

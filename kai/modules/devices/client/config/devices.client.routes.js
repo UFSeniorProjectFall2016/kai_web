@@ -33,7 +33,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle : 'Devices Create'
+          pageTitle: 'Devices Create'
         }
       })
       .state('devices.edit', {
@@ -57,7 +57,7 @@
         resolve: {
           deviceResolve: getDevice
         },
-        data:{
+        data: {
           pageTitle: 'Device {{ articleResolve.name }}'
         }
       });
@@ -76,4 +76,4 @@
   function newDevice(DevicesService) {
     return new DevicesService();
   }
-})();
+}());

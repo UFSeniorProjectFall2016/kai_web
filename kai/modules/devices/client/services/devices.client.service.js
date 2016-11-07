@@ -1,4 +1,3 @@
-//Devices service used to communicate Devices REST endpoints
 (function () {
   'use strict';
 
@@ -17,4 +16,4 @@
       }
     });
   }
-})();
+}());

@@ -6,7 +6,7 @@
     var $scope,
       DevicesService;
 
-    //We can start by loading the main application module
+    // We can start by loading the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
 
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
@@ -53,7 +53,7 @@
             name: 'Device Name'
           });
 
-          //Initialize Controller
+          // Initialize Controller
           DevicesController = $controller('DevicesController as vm', {
             $scope: $scope,
             deviceResolve: mockDevice
@@ -100,7 +100,7 @@
           // create mock Device
           mockDevice = new DevicesService();
 
-          //Initialize Controller
+          // Initialize Controller
           DevicesController = $controller('DevicesController as vm', {
             $scope: $scope,
             deviceResolve: mockDevice
@@ -149,7 +149,7 @@
             name: 'Device Name'
           });
 
-          //Initialize Controller
+          // Initialize Controller
           DevicesController = $controller('DevicesController as vm', {
             $scope: $scope,
             deviceResolve: mockDevice
@@ -190,4 +190,4 @@
 
     });
   });
-})();
+}());

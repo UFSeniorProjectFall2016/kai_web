@@ -36,7 +36,11 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  device.isCurrentUserOwner = req.user && device.user && device.user._id.toString() === req.user._id.toString() ? true : false;
+  if (req.user && device.user && device.user._id.toString() === req.user._id.toString()) {
+    device.isCurrentUserOwner = true;
+  } else {
+    device.isCurrentUserOwner = false;
+  }
 
   res.jsonp(device);
 };
@@ -45,9 +49,9 @@ exports.read = function(req, res) {
  * Update a Device
  */
 exports.update = function(req, res) {
-  var device = req.device ;
+  var device = req.device;
 
-  device = _.extend(device , req.body);
+  device = _.extend(device, req.body);
 
   device.save(function(err) {
     if (err) {
@@ -64,7 +68,7 @@ exports.update = function(req, res) {
  * Delete an Device
  */
 exports.delete = function(req, res) {
-  var device = req.device ;
+  var device = req.device;
 
   device.remove(function(err) {
     if (err) {
@@ -80,7 +84,7 @@ exports.delete = function(req, res) {
 /**
  * List of Devices
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Device.find().sort('-created').populate('user', 'displayName').exec(function(err, devices) {
     if (err) {
       return res.status(400).send({

@@ -20,9 +20,9 @@
 
     // Remove existing Device
     function remove() {
-      if (confirm('Are you sure you want to delete?')) {
-        vm.device.$remove($state.go('devices.list'));
-      }
+      vm.device.$remove($state.go('devices.list'));
+      // if (confirm('Are you sure you want to delete?')) {
+      // }
     }
 
     // Save Device
@@ -50,4 +50,4 @@
       }
     }
   }
-})();
+}());
