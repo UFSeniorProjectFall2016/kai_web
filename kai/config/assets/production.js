@@ -9,6 +9,8 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+        'public/lib/ng-img-crop/compile/minified/ng-img-crop.css',
+        'public/lib/angular-material/angular-material.min.css',
         // endbower
       ],
       js: [
@@ -21,7 +23,11 @@ module.exports = {
         'public/lib/angular-mocks/angular-mocks.js',
         'public/lib/angular-resource/angular-resource.min.js',
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
+        'public/lib/ng-file-upload/ng-file-upload.min.js',
+        'public/lib/ng-img-crop/compile/minified/ng-img-crop.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/angular-aria/angular-aria.min.js',
+        'public/lib/angular-material/angular-material.min.js',
         // endbower
       ]
     },

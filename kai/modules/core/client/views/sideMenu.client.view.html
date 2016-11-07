@@ -22,26 +22,31 @@
     <md-menu-content width="12">
       <md-menu-item>
         <md-button ui-sref="home" ng-click="toggleLeft()">
-          <md-icon md-svg-icon="modules/core/client/img/icons/ic_home_black_24px.svg"></md-icon>
+          <md-icon md-svg-icon="modules/core/client/img/icons_req/ic_home_black_24px.svg"></md-icon>
           <span md-menu-align-target>Home</span>
         </md-button>
       </md-menu-item>
       <md-menu-item>
         <md-button ui-sref="profileView" ng-click="toggleLeft()">
-          <md-icon md-svg-icon="modules/core/client/img/icons/ic_account_circle_black_24px.svg"></md-icon>
+          <md-icon md-svg-icon="modules/core/client/img/icons_req/ic_account_circle_black_24px.svg"></md-icon>
           <span md-menu-align-target>User Profile</span>
         </md-button>
       </md-menu-item>
       <md-menu-item>
+<<<<<<< HEAD
         <md-button ng-click="toggleLeft()">
+          <md-icon md-svg-icon="modules/core/client/img/icons_req/ic_devices_black_24px.svg"></md-icon>
+=======
+        <md-button ui-sref="devices.list" ng-click="toggleLeft()">
           <md-icon md-svg-icon="modules/core/client/img/icons/ic_devices_black_24px.svg"></md-icon>
+>>>>>>> 91ae28c02a088d7ff2653012a667f13e6e113ab4
           <span md-menu-align-target>Devices</span>
         </md-button>
       </md-menu-item>
       <md-divider layout-fill></md-divider>
       <md-menu-item>
         <md-button href="/api/auth/signout" target="_self" ng-click="toggleLeft()">
-          <md-icon md-svg-icon="modules/core/client/img/icons/ic_highlight_off_black_24px.svg"></md-icon>
+          <md-icon md-svg-icon="modules/core/client/img/icons_req/ic_power_settings_new_black_24px.svg"></md-icon>
           <span md-menu-align-target>Logout</span>
         </md-button>
       </md-menu-item>
