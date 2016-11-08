@@ -1,0 +1,32 @@
+<section>
+  <md-subheader>
+    <span class="md-subhead">My Devices</span>
+    <md-button class="md-fab md-fab-top-right md-mini md-accent" aria-label="add">
+      <md-icon data-ui-sref="devices.create" class="material-icons">add</md-icon>
+    </md-button>
+  </md-subheader>
+  <div data-ng-repeat="device in vm.devices">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+      <md-card-header>
+        <md-card-header-text layout="row" layout-align="space-between center">
+          <span class="md-subhead">{{device._name}}</span>
+          <span ng-if="device._devid!=='wind'" class="md-subhead">{{device._status ? 'ON' : 'OFF'}}</span>
+          <span ng-if="device._devid==='wind'" class="md-subhead">{{device._status===0 ? 'CLOSED' : 'OPEN'}}</span>
+        </md-card-header-text>
+      </md-card-header>
+
+      <md-card-actions layout="row" layout-align="space-between center">
+       <md-slider flex class="md-primary" ng-if="device._devid==='wind'" md-discrete ng-model="device._status" step="1" min="0" max="5" aria-label="rating" ng-change="vm.sendMessage(device)">
+       </md-slider>
+       <md-switch class="md-primary" ng-if="device._devid!=='wind'" ng-model="device._status" aria-label="Switch 1" ng-change="vm.sendMessage(device)">
+       </md-switch>
+       <md-button md-no-ink class="md-icon-button" aria-label="visibility">
+         <md-icon data-ui-sref="devices.view({ deviceId: device._id })" class="material-icons">visibility</md-icon>
+       </md-button>
+     </md-card-actions>
+    </md-card>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.devices.$resolved && !vm.devices.length">
+    No Devices yet
+  </div>
+</section>
