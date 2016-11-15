@@ -43,7 +43,7 @@
       _state: true,
       _status: 1
     }];
-    // vm.devices = DevicesService.query();
+    vm.devices = DevicesService.query();
     vm.messages = messages;
     vm.sendMessage = sendMessage;
 

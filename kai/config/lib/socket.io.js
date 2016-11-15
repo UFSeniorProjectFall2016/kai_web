@@ -108,7 +108,9 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
+    console.log('Connection + ' + socket);
     config.files.server.sockets.forEach(function (socketConfiguration) {
+      console.log('that path: ' + path.resolve(socketConfiguration));
       require(path.resolve(socketConfiguration))(io, socket);
     });
   });
