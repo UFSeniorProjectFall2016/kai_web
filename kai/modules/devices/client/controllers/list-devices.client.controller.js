@@ -5,9 +5,9 @@
     .module('devices')
     .controller('DevicesListController', DevicesListController);
 
-  DevicesListController.$inject = ['DevicesService', '$scope', '$state', 'Authentication', 'Socket'];
+  DevicesListController.$inject = ['DevicesStatesService', 'DevicesService', '$scope', '$state', 'Authentication', 'Socket'];
 
-  function DevicesListController(DevicesService, $scope, $state, Authentication, Socket) {
+  function DevicesListController(DevicesStatesService, DevicesService, $scope, $state, Authentication, Socket) {
     var vm = this;
     var messages = [];
     vm.devices = [{
