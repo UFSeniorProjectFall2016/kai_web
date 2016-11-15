@@ -55,9 +55,10 @@
     }
 
     function deviceOn() {
-      var i, res = 0;
+      var i = 0;
+      var res = 0;
       for (i = 0; i < vm.devices.length; i++) {
-        if( (vm.devices[i]._status === true) || (vm.devices[i]._status > 0) ) {
+        if ((vm.devices[i]._status === true) || (vm.devices[i]._status > 0)) {
           res += 1;
         }
       }
