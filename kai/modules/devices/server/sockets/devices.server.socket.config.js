@@ -7,8 +7,8 @@ module.exports = function (io, socket) {
   io.emit('connected_user', {
     type: 'status',
     text: 'Is now connected',
-    created: Date.now(),
-    username: socket.request.user.username
+    created: Date.now()
+    // username: socket.request.user.username
   });
 
   // Send message connection notifications to all clients connected to Kai
@@ -26,8 +26,8 @@ module.exports = function (io, socket) {
     io.emit('connected_user', {
       type: 'status',
       text: 'disconnected',
-      created: Date.now(),
-      username: socket.request.user.username
+      created: Date.now()
+      // username: socket.request.user.username
     });
   });
 };
