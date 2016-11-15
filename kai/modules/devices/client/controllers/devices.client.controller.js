@@ -17,12 +17,24 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.cancel = cancel;
 
     // Remove existing Device
     function remove() {
       vm.device.$remove($state.go('devices.list'));
       // if (confirm('Are you sure you want to delete?')) {
       // }
+    }
+
+    // Cancel Editing or new addition
+    function cancel() {
+      if(vm.device._id) {
+        $state.go('devices.view', {
+          deviceId: device._id
+        });
+      } else {
+        $state.go('devices.list', {});
+      }
     }
 
     // Save Device
