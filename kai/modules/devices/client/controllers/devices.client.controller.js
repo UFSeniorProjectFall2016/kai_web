@@ -28,7 +28,7 @@
 
     // Cancel Editing or new addition
     function cancel() {
-      if(vm.device._id) {
+      if (vm.device._id) {
         $state.go('devices.view', {
           deviceId: device._id
         });

@@ -21,6 +21,11 @@ module.exports = function (io, socket) {
     io.emit('device status', message);
   });
 
+  // Listen for pinging connection
+  socket.on('ping_res', function (message) {
+    io.emit('ping_res', message);
+  });
+
   // Emit the status event when a socket client is disconnected
   socket.on('disconnect', function () {
     io.emit('connected_user', {
