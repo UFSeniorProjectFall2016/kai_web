@@ -25,6 +25,7 @@ module.exports = function (io, socket) {
   // Listen for pinging connection
   socket.on('ping_res', function (message) {
     io.emit('ping_res', message);
+    io.emit('notification', {});
   });
 
   socket.on('status_req', function (message) {

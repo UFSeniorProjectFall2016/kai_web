@@ -29,7 +29,7 @@
   };
 
   devices.addNotification = function(notification) {
-    devices.unshift(notification);
+    devices.notifications.unshift(notification);
   };
 
   devices.getNotification = function(numOfNotifications) {

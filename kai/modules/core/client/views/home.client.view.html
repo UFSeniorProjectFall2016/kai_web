@@ -76,8 +76,8 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-content layout="row" data-ng-repeat="n in vm.notifications">
-        <p layout-fill data-ng-bind="n.date">No notifications posted yet</p>
-        <p layout-fill data-ng-bind="n.msg">No notifications posted yet</p>
+        <span flex="25" data-ng-bind="vm.formatTime(n.date)">No notifications posted yet</span>
+        <span flex data-ng-bind="n.msg">No notifications posted yet</span>
       </md-card-content>
     </div>
   </div>

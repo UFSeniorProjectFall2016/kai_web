@@ -22,6 +22,7 @@
     var notifications = [];
 
     vm.greet = greet;
+    vm.formatTime = formatTime;
     vm.notifications = DevicesStatesService.getNotification(5);
     vm.devState = DevicesStatesService.list;
     vm.devices = DevicesService.query();
@@ -45,6 +46,11 @@
       // Request the states of every devices
       Socket.emit('status_req', {});
 
+      // Listen connection ping made by web client
+      Socket.on('notification', function (message) {
+        vm.notifications = DevicesStatesService.getNotification(5);
+      });
+
       // Listen for device states
       Socket.on('status_res', function (message) {
         console.log('This should be an array of messages' + message);
@@ -60,6 +66,21 @@
       if (DevicesStatesService.list === undefined) {
         vm.devState = DevicesService.query();
       }
+    }
+
+    function formatTime(date) {
+      var d = new Date(date);
+      var hr = d.getHours();
+      var min = d.getMinutes();
+      var sec = d.getSeconds();
+      if (min < 10) {
+        min = '0' + min;
+      }
+      if (sec < 10) {
+        sec = '0' + sec;
+      }
+      var am = (hr < 12) ? 'AM' : 'PM';
+      return (hr % 12) + ':' + min + ':' + sec + am;
     }
 
     function greet() {

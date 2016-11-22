@@ -5,9 +5,9 @@
     .module('core')
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', '$mdSidenav', 'Socket'];
+  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', '$mdSidenav', 'Socket', 'DevicesStatesService'];
 
-  function HeaderController($scope, $state, Authentication, menuService, $mdSidenav, Socket) {
+  function HeaderController($scope, $state, Authentication, menuService, $mdSidenav, Socket, DevicesStatesService) {
     var vm = this;
     var statusProperties = [{
       _id: 0,
@@ -19,6 +19,7 @@
       _id: 2,
       color: '#4caf50'
     }];
+    var tmpNotification = [];
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;
@@ -35,8 +36,17 @@
           Socket.connect();
         }
 
+        Socket.emit('ping_req', {});
+
         Socket.on('ping_res', function (message) {
-          vm.currStatus = statusProperties[message];
+          console.log('status: ' + message.data.statusChg);
+          vm.currStatus = statusProperties[message.data.status];
+          if (message.data.statusChg === true) {
+            DevicesStatesService.addNotification({
+              date: message.date,
+              msg: message.data.msg
+            });
+          }
         });
 
         // Destroy the socket when the user logout instead
