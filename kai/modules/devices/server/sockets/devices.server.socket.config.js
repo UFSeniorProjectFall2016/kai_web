@@ -10,6 +10,7 @@ module.exports = function (io, socket) {
     created: Date.now()
     // username: socket.request.user.username
   });
+  // io.emit('status_req', {});
 
   // Send message connection notifications to all clients connected to Kai
   socket.on('device status', function (message) {
@@ -24,6 +25,14 @@ module.exports = function (io, socket) {
   // Listen for pinging connection
   socket.on('ping_res', function (message) {
     io.emit('ping_res', message);
+  });
+
+  socket.on('status_req', function (message) {
+    io.emit('status_req', message);
+  });
+
+  socket.on('status_res', function (message) {
+    io.emit('status_res', message);
   });
 
   // Emit the status event when a socket client is disconnected

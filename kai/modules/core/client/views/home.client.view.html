@@ -3,8 +3,11 @@
   <div class="card red" layout="column" layout-align="center center" layout-padding>
     <div flex="20"></div>
     <div flex="20">
-      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" />
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
+        <span class="md-display-1" ng-bind="vm.greet()"></span>
+        <!-- &nbsp; -->
+        <br/>
+        <span class="md-display-1" ng-bind="vm.authentication.user.firstName"></span>
       </div>
     </div>
     <hr layout-fill/>
@@ -54,11 +57,11 @@
         <div layout="row" layout-align="space-around center">
           <div>
             <span class="md-display-1">{{vm.deviceOn()}}</span>
-            <span class="md-body-2">Online</span>
+            <span class="md-headline">ON</span>
           </div>
           <div>
             <span class="md-display-1">{{vm.deviceOff()}}</span>
-            <span class="md-body-2">Offline</span>
+            <span class="md-headline">OFF</span>
           </div>
         </div>
       </md-card-content>
@@ -72,8 +75,9 @@
           <span class="md-subhead">Notification</span>
         </md-card-title-text>
       </md-card-title>
-      <md-card-content layout="column">
-        <p layout-fill>This is what a notification will look like when need</p>
+      <md-card-content layout="row" data-ng-repeat="n in vm.notifications">
+        <p layout-fill data-ng-bind="n.date">No notifications posted yet</p>
+        <p layout-fill data-ng-bind="n.msg">No notifications posted yet</p>
       </md-card-content>
     </div>
   </div>

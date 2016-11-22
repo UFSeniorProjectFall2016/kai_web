@@ -11,13 +11,13 @@
     var vm = this;
     var statusProperties = [{
       _id: 0,
-      color: '#dcdcdc',
+      color: '#dcdcdc'
     }, {
       _id: 1,
-      color: '#ffab00',
+      color: '#ffab00'
     }, {
       _id: 2,
-      color: '#4caf50',
+      color: '#4caf50'
     }];
 
     vm.accountMenu = menuService.getMenu('account').items[0];
@@ -38,6 +38,14 @@
         Socket.on('ping_res', function (message) {
           vm.currStatus = statusProperties[message];
         });
+
+        // Destroy the socket when the user logout instead
+        $scope.$on('$destroy', function () {
+          console.log('socket destruction');
+          Socket.removeListener('device status');
+        });
+      } else {
+        $state.go('authentication.signin', {});
       }
     }
 
