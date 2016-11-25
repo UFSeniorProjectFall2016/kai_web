@@ -13,7 +13,7 @@
     <hr layout-fill/>
     <div flex="20">
       <p class="lead text-center">
-        Open-Source Full-Stack Solution For MEAN Applications
+        Everything looks good
       </p>
     </div>
   </div>
@@ -31,15 +31,15 @@
         <div layout="row" layout-align="space-between center">
           <div>
             <md-icon md-svg-icon="modules/core/client/img/icons_req/temperature.svg"></md-icon>
-            <span class="md-body-2">45˚F</span>
+            <span class="md-body-2">{{vm.homeCondition[0]}}˚F</span>
           </div>
           <div>
             <md-icon md-svg-icon="modules/core/client/img/icons_req/drop.svg"></md-icon>
-            <span class="md-body-2">100%</span>
+            <span class="md-body-2">{{vm.homeCondition[1]}}%</span>
           </div>
           <div>
             <md-icon md-svg-icon="modules/core/client/img/icons_req/light-bulb.svg"></md-icon>
-            <span class="md-body-2">45%</span>
+            <span class="md-body-2">{{vm.homeCondition[2]}}%</span>
           </div>
         </div>
       </md-card-content>
@@ -72,7 +72,7 @@
     <div class="card red" layout-align="space-around center" layout-padding>
       <md-card-title layout="column">
         <md-card-title-text layout="column" layout-align="center center">
-          <span class="md-subhead">Notification</span>
+          <span class="md-subhead">Notifications</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content layout="row" data-ng-repeat="n in vm.notifications">

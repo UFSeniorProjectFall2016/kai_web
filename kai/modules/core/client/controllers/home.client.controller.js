@@ -22,6 +22,7 @@
     var notifications = [];
 
     vm.greet = greet;
+    vm.homeCondition = ['00', '00', '00'];
     vm.formatTime = formatTime;
     vm.notifications = DevicesStatesService.getNotification(5);
     vm.devState = DevicesStatesService.list;
@@ -45,6 +46,12 @@
 
       // Request the states of every devices
       Socket.emit('status_req', {});
+
+      // Listen for home condition being broadcasted
+      Socket.on('condition_res', function (message) {
+        // Emit the 'chatMessage' event
+        io.emit('condition_res', message);
+      });
 
       // Listen connection ping made by web client
       Socket.on('notification', function (message) {

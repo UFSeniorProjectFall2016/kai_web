@@ -22,6 +22,12 @@ module.exports = function (io, socket) {
     io.emit('device status', message);
   });
 
+  // Listen for home condition status
+  socket.on('condition_res', function (message) {
+    // Emit the 'chatMessage' event
+    io.emit('condition_res', message);
+  });
+
   // Listen for pinging connection
   socket.on('ping_res', function (message) {
     io.emit('ping_res', message);

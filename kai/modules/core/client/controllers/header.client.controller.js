@@ -19,7 +19,6 @@
       _id: 2,
       color: '#4caf50'
     }];
-    var tmpNotification = [];
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;
