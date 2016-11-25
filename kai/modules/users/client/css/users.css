@@ -39,7 +39,8 @@
 }
 
 .red {
-  background: #ff8a80;
+  /*background: #ff8a80;*/
+  background: #c5cae9;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   /*filter:blur(1px);*/

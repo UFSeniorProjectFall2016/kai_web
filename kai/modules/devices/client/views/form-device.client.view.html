@@ -1,0 +1,32 @@
+<section>
+  <md-subheader>
+    <span class="md-subhead">{{vm.device._id ? 'Edit Device' : 'New Device'}}</span>
+  </md-subheader>
+  <div layout="column"  layout-padding>
+    <div ng-cloak>
+      <form name="vm.form.deviceForm" ng-submit="vm.save(vm.form.deviceForm.$valid)" novalidate>
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input ng-model="vm.device._name" id="name" required>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Description</label>
+          <input ng-model="vm.device._des">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Type</label>
+          <!-- <input ng-model="vm.device._devType"> -->
+          <md-select ng-model="vm.selTypeId" md-selected-text="vm.getSelectedType()">
+            <md-optgroup label="Type">
+              <md-option ng-value="item.id" ng-repeat="item in vm.devType">{{item.name}}</md-option>
+            </md-optgroup>
+          </md-select>
+        </md-input-container>
+        <div layout="row" layout-align="space-around center">
+          <md-button md-no-ink class="md-primary" ng-click="vm.cancel()">Cancel</md-button>
+          <md-button type="submit" class="md-warn">{{vm.device._id ? 'Update' : 'Create'}}</md-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
