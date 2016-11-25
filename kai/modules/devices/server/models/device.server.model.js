@@ -10,11 +10,31 @@ var mongoose = require('mongoose'),
  * Device Schema
  */
 var DeviceSchema = new Schema({
-  name: {
+  _name: {
     type: String,
     default: '',
     required: 'Please fill Device name',
     trim: true
+  },
+  _des: {
+    type: String,
+    default: 'No description provided yet'
+  },
+  _devid: {
+    type: String,
+    default: ''
+  },
+  _devType: {
+    type: Number,
+    default: 1
+  },
+  _state: {
+    type: Boolean,
+    default: false
+  },
+  _status: {
+    type: Number,
+    default: 0
   },
   created: {
     type: Date,

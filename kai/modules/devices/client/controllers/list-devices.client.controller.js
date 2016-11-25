@@ -5,11 +5,11 @@
     .module('devices')
     .controller('DevicesListController', DevicesListController);
 
-  DevicesListController.$inject = ['DevicesService', '$scope', '$state', 'Authentication', 'Socket'];
+  DevicesListController.$inject = ['DevicesStatesService', 'DevicesService', '$scope', '$state', 'Authentication', 'Socket'];
 
-  function DevicesListController(DevicesService, $scope, $state, Authentication, Socket) {
+  function DevicesListController(DevicesStatesService, DevicesService, $scope, $state, Authentication, Socket) {
     var vm = this;
-
+    var messages = [];
     vm.devices = [{
       _id: 0,
       _devid: 'light',
@@ -43,12 +43,14 @@
       _state: true,
       _status: 1
     }];
-    // vm.devices = DevicesService.query();
+    vm.devices = DevicesService.query();
+    vm.messages = messages;
     vm.sendMessage = sendMessage;
 
     init();
 
     function init() {
+      console.log('Okay what is going on');
       // If user is not signed in then redirect back home
       if (!Authentication.user) {
         $state.go('home');
@@ -57,18 +59,27 @@
       // Make sure the Socket is connected
       if (!Socket.socket) {
         Socket.connect();
+        console.log('Socket connection created');
       }
+
+      // Add an event listener to the 'chatMessage' event
+      console.log('right before');
+      Socket.on('device status', function (message) {
+        console.log('message received!' + message);
+        vm.messages.unshift(message);
+      });
 
       // Remove the event listener when the controller instance is destroyed
       // Destroy the socket when the user logout instead
       $scope.$on('$destroy', function () {
+        console.log('socket destruction');
         Socket.removeListener('device status');
       });
     }
 
     // Create a controller method for sending messages
     function sendMessage(device) {
-      console.log('Send message: \n');
+      // console.log('Send message: \n');
 
       // Create a new message object
       var message = {
@@ -76,6 +87,8 @@
         name: device._name,
         status: device._status
       };
+
+      console.log('Send message: {id: ' + message.id + ', name: ' + message.name + ', status: ' + message.status + '}\n');
 
       // Emit a 'device status' message event
       Socket.emit('device status', message);

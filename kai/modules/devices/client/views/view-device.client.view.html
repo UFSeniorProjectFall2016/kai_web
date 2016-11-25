@@ -1,26 +1,43 @@
 <section>
-  <div class="page-header">
-    <h1 data-ng-bind="vm.device.name"></h1>
+  <md-subheader>
+    <span class="md-subhead">View Device Info</span>
+  </md-subheader>
+  <div layout="column"  layout-padding>
+    <div ng-cloak class="md-inline-form">
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input ng-model="vm.device._name" disabled>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <input ng-model="vm.device._des" disabled>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Type</label>
+        <input ng-model="vm.device._devType" disabled>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>State</label>
+        <input ng-model="vm.device._state" disabled>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Status</label>
+        <input ng-model="vm.device._status" disabled>
+      </md-input-container>
+      <i layout="row" layout-align="center center" class="md-caption text-center">
+        Created on
+        &nbsp;
+        <span data-ng-bind="vm.device.created | date:'mediumDate'"> </span>
+      </i>
+      <br/>
+      <div layout="row" layout-align="space-around center">
+        <md-button md-no-ink class="md-icon-button" aria-label="edit">
+          <md-icon data-ui-sref="devices.edit({ deviceId: vm.device._id })" class="material-icons">edit</md-icon>
+        </md-button>
+        <md-button md-no-ink class="md-icon-button" aria-label="delete">
+          <md-icon data-ng-click="vm.remove()" class="material-icons">delete</md-icon>
+        </md-button>
+      </div>
+    </div>
   </div>
-  <div class="pull-right"
-       data-ng-show="vm.device.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       data-ui-sref="devices.edit({ deviceId: vm.device._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
-  </div>
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span data-ng-bind="vm.device.created | date:'mediumDate'"></span>
-      by
-      <span data-ng-if="vm.device.user"
-            data-ng-bind="vm.device.user.displayName"></span>
-      <span data-ng-if="!vm.device.user">Deleted User</span>
-    </em>
-  </small>
-  <p class="lead" data-ng-bind="vm.device.content"></p>
 </section>
