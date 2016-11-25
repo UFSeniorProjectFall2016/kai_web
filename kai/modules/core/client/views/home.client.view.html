@@ -3,76 +3,82 @@
   <div class="card red" layout="column" layout-align="center center" layout-padding>
     <div flex="20"></div>
     <div flex="20">
-      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" />
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
+        <span class="md-display-1" ng-bind="vm.greet()"></span>
+        <!-- &nbsp; -->
+        <br/>
+        <span class="md-display-1" ng-bind="vm.authentication.user.firstName"></span>
       </div>
     </div>
     <hr layout-fill/>
     <div flex="20">
       <p class="lead text-center">
-        Open-Source Full-Stack Solution For MEAN Applications
+        Everything looks good
       </p>
     </div>
   </div>
 
-  <!-- Humidity/Temperature Sensor Reporting -->
-  <br/>
-  <div class="card red" layout-align="space-around center" layout-padding>
-    <md-card-title layout="column" layout-align="start center">
-      <md-card-title-text layout-align="center center">
-        <span class="md-subhead">Home Condition</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content layout="column">
-      <div layout="row" layout-align="space-between center">
-        <div>
-          <md-icon md-svg-icon="modules/core/client/img/icons_req/temperature.svg"></md-icon>
-          <span class="md-body-2">45˚F</span>
+  <!-- <br/> -->
+  <div layout-padding>
+    <!-- Humidity/Temperature Sensor Reporting -->
+    <div class="card" layout-align="space-around center" layout-padding>
+      <md-card-title layout="column" layout-align="start center">
+        <md-card-title-text layout-align="center center">
+          <span class="md-subhead">Home Condition</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content layout="column">
+        <div layout="row" layout-align="space-between center">
+          <div>
+            <md-icon md-svg-icon="modules/core/client/img/icons_req/temperature.svg"></md-icon>
+            <span class="md-body-2">{{vm.homeCondition[0]}}˚F</span>
+          </div>
+          <div>
+            <md-icon md-svg-icon="modules/core/client/img/icons_req/drop.svg"></md-icon>
+            <span class="md-body-2">{{vm.homeCondition[1]}}%</span>
+          </div>
+          <div>
+            <md-icon md-svg-icon="modules/core/client/img/icons_req/light-bulb.svg"></md-icon>
+            <span class="md-body-2">{{vm.homeCondition[2]}}%</span>
+          </div>
         </div>
-        <div>
-          <md-icon md-svg-icon="modules/core/client/img/icons_req/drop.svg"></md-icon>
-          <span class="md-body-2">100%</span>
-        </div>
-        <div>
-          <md-icon md-svg-icon="modules/core/client/img/icons_req/light-bulb.svg"></md-icon>
-          <span class="md-body-2">45%</span>
-        </div>
-      </div>
-    </md-card-content>
-  </div>
+      </md-card-content>
+    </div>
 
-  <!-- Device Status Report -->
-  <br/>
-  <div class="card red" layout-align="space-around center" layout-padding>
-    <md-card-title layout="column" layout-align="start center">
-      <md-card-title-text layout-align="center center">
-        <span class="md-subhead">Devices status</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content layout="column">
-      <div layout="row" layout-align="space-around center">
-        <div>
-          <span class="md-display-1">3</span>
-          <span class="md-body-2">Online</span>
+    <!-- Device Status Report -->
+    <br/>
+    <div class="card red" ui-sref="devices.list" layout-align="space-around center" layout-padding>
+      <md-card-title layout="column" layout-align="start center">
+        <md-card-title-text layout-align="center center">
+          <span class="md-subhead">Devices status</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content layout="column">
+        <div layout="row" layout-align="space-around center">
+          <div>
+            <span class="md-display-1">{{vm.deviceOn()}}</span>
+            <span class="md-headline">ON</span>
+          </div>
+          <div>
+            <span class="md-display-1">{{vm.deviceOff()}}</span>
+            <span class="md-headline">OFF</span>
+          </div>
         </div>
-        <div>
-          <span class="md-display-1">2</span>
-          <span class="md-body-2">Offline</span>
-        </div>
-      </div>
-    </md-card-content>
-  </div>
+      </md-card-content>
+    </div>
 
-  <!-- Next Schedule Operation -->
-  <br/>
-  <div class="card red" layout-align="space-around center" layout-padding>
-    <md-card-title layout="column">
-      <md-card-title-text layout="column" layout-align="center center">
-        <span class="md-subhead">Notification</span>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content layout="column">
-      <p layout-fill>This is what a notification will look like when need</p>
-    </md-card-content>
+    <!-- Next Schedule Operation -->
+    <br/>
+    <div class="card red" layout-align="space-around center" layout-padding>
+      <md-card-title layout="column">
+        <md-card-title-text layout="column" layout-align="center center">
+          <span class="md-subhead">Notifications</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content layout="row" data-ng-repeat="n in vm.notifications">
+        <span flex="25" data-ng-bind="vm.formatTime(n.date)">No notifications posted yet</span>
+        <span flex data-ng-bind="n.msg">No notifications posted yet</span>
+      </md-card-content>
+    </div>
   </div>
 </section>
