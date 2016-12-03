@@ -16,9 +16,9 @@
       </md-card-header>
 
       <md-card-actions layout="row" layout-align="space-between center">
-       <md-slider flex class="md-primary" ng-if="device._devid==='wind'" md-discrete ng-model="device._status" step="1" min="0" max="5" aria-label="rating" ng-change="vm.sendMessage(device)">
+       <md-slider flex class="md-primary" ng-if="device._devid==='#wind'" md-discrete ng-model="device._status" step="1" min="0" max="5" aria-label="rating" ng-change="vm.sendMessage(device)">
        </md-slider>
-       <md-switch class="md-primary" ng-if="device._devid!=='wind'" ng-model="device._status" aria-label="Switch 1" ng-change="vm.sendMessage(device)">
+       <md-switch class="md-primary" ng-if="device._devid!=='#wind'" ng-true-value="1" ng-false-value="0" ng-model="device._status" aria-label="Switch 1" ng-change="vm.sendMessage(device)">
        </md-switch>
        <md-button md-no-ink class="md-icon-button" aria-label="visibility">
          <md-icon data-ui-sref="devices.view({ deviceId: device._id })" class="material-icons">visibility</md-icon>

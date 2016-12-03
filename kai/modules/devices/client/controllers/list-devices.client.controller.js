@@ -10,47 +10,13 @@
   function DevicesListController(DevicesStatesService, DevicesService, $scope, $state, Authentication, Socket) {
     var vm = this;
     var messages = [];
-    vm.devices = [{
-      _id: 0,
-      _devid: 'light',
-      _name: 'Light',
-      _des: 'This is the light in the living room',
-      _devType: 1,
-      _state: true,
-      _status: true
-    }, {
-      _id: 1,
-      _devid: 'door',
-      _name: 'Door',
-      _des: 'This is the front door of the house',
-      _devType: 1,
-      _state: true,
-      _status: false
-    }, {
-      _id: 2,
-      _devid: 'coffee',
-      _name: 'Coffee Machine',
-      _des: 'Coffee machine in my kitchen',
-      _devType: 1,
-      _state: true,
-      _status: false
-    }, {
-      _id: 3,
-      _devid: 'wind',
-      _name: 'Windows',
-      _des: 'Living room windows',
-      _devType: 1,
-      _state: true,
-      _status: 1
-    }];
-    vm.devices = DevicesService.query();
+    vm.devices = DevicesStatesService.list;
     vm.messages = messages;
     vm.sendMessage = sendMessage;
 
     init();
 
     function init() {
-      console.log('Okay what is going on');
       // If user is not signed in then redirect back home
       if (!Authentication.user) {
         $state.go('home');
@@ -62,33 +28,96 @@
         console.log('Socket connection created');
       }
 
+      // Load devices last state
+      if (vm.devices === undefined || vm.devices.length === 0) {
+        vm.devices = DevicesService.query();
+      }
+
+      // Request the states of every devices
+      // Socket.emit('status_req', {});
+
+      // Listen for status response
+      Socket.on('status_res', function (message) {
+        // console.log('I receive ' + message.length + ' devices');
+        var i;
+        for (i = 0; i < message.length; i++) {
+          if (message[i] !== undefined) {
+            updateUI(message[i]);
+          }
+        }
+      });
+
       // Add an event listener to the 'chatMessage' event
-      console.log('right before');
       Socket.on('device status', function (message) {
-        console.log('message received!' + message);
-        vm.messages.unshift(message);
+        if (message.origin !== 'Web') {
+          // console.log('message received from' + message.origin);
+          console.log('message: ' + JSON.stringify(message));
+          // updateUI(message);
+        }
+
+        console.log('message: ' + JSON.stringify(message));
+        // Send notification
+        var tmp;
+        if (message.devid === '#wind') {
+          tmp = (message._status > 0) ? ' OPEN' : ' CLOSED';
+        } else {
+          tmp = (message._status > 0) ? ' turned ON' : ' turned OFF';
+        }
+
+        var o = {
+          date: message.date,
+          msg: message._name + tmp + ' from ' + message.origin
+        };
+
+        DevicesStatesService.add(message);
+        DevicesStatesService.addNotification(o);
+
+      });
+
+      Socket.on('condition_res', function (message) {
+        var msg2JSON = JSON.parse(message);
+        var status2JSON = JSON.parse(msg2JSON._status);
+        DevicesStatesService.addHomeCond({
+          T: status2JSON.T,
+          H: status2JSON.H,
+          L: undefined
+        });
       });
 
       // Remove the event listener when the controller instance is destroyed
       // Destroy the socket when the user logout instead
       $scope.$on('$destroy', function () {
-        console.log('socket destruction');
-        Socket.removeListener('device status');
+        console.log('Scope destroyed');
+        // Socket.removeListener('device status');
       });
+    }
+
+    function updateUI(device) {
+      var i;
+      for (i = 0; i < vm.devices.length; i++) {
+        if (vm.devices[i]._devid === device._devid) {
+          console.log('Change UI occured');
+          vm.devices[i]._status = device._status;
+          return;
+        }
+      }
     }
 
     // Create a controller method for sending messages
     function sendMessage(device) {
-      // console.log('Send message: \n');
+      console.log('device index: ' + device);
 
       // Create a new message object
       var message = {
-        id: '#' + device._devid,
-        name: device._name,
-        status: device._status
+        date: new Date(),
+        origin: 'Web',
+        _devid: device._devid,
+        _devType: device._devType,
+        _name: device._name,
+        _des: device._des,
+        _state: device._state,
+        _status: device._status
       };
-
-      console.log('Send message: {id: ' + message.id + ', name: ' + message.name + ', status: ' + message.status + '}\n');
 
       // Emit a 'device status' message event
       Socket.emit('device status', message);

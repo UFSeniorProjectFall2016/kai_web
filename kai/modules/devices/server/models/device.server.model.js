@@ -22,7 +22,7 @@ var DeviceSchema = new Schema({
   },
   _devid: {
     type: String,
-    default: ''
+    default: '#'
   },
   _devType: {
     type: Number,

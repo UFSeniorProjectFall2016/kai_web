@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$state', 'UsersService', '$location', 'Authentication', 'DevicesService', 'DevicesStatesService', 'Socket'];
+  HomeController.$inject = ['$state', '$scope', 'UsersService', '$location', 'Authentication', 'DevicesService', 'DevicesStatesService', 'Socket'];
 
-  function HomeController($state, UsersService, $location, Authentication, DevicesService, DevicesStatesService, Socket) {
+  function HomeController($state, $scope, UsersService, $location, Authentication, DevicesService, DevicesStatesService, Socket) {
     var vm = this;
     var greetings = [{
       strtHr: 0,
@@ -22,7 +22,7 @@
     var notifications = [];
 
     vm.greet = greet;
-    vm.homeCondition = ['00', '00', '00'];
+    vm.homeCondition = DevicesStatesService.getCondition();
     vm.formatTime = formatTime;
     vm.notifications = DevicesStatesService.getNotification(5);
     vm.devState = DevicesStatesService.list;
@@ -44,13 +44,29 @@
         Socket.connect();
       }
 
+      // Load last save states from user devices
+      if (vm.devState === undefined || vm.devState.length === 0) {
+        vm.devState = vm.devices;
+      }
+
       // Request the states of every devices
-      Socket.emit('status_req', {});
+      // var hcTimer = setInterval(requestHomeCondition, 1000);
+      Socket.emit('condition_req', {});
+      // Socket.emit('status_req', {});
 
       // Listen for home condition being broadcasted
       Socket.on('condition_res', function (message) {
         // Emit the 'chatMessage' event
-        io.emit('condition_res', message);
+        var msg2JSON = JSON.parse(message);
+        var status2JSON = JSON.parse(msg2JSON._status);
+        // console.log('receive a message from ROS' + tmp._status);
+        vm.homeCondition[0] = status2JSON.T;
+        vm.homeCondition[1] = status2JSON.H;
+        DevicesStatesService.addHomeCond({
+          T: status2JSON.T,
+          H: status2JSON.H,
+          L: undefined
+        });
       });
 
       // Listen connection ping made by web client
@@ -60,18 +76,28 @@
 
       // Listen for device states
       Socket.on('status_res', function (message) {
-        console.log('This should be an array of messages' + message);
         var i;
         for (i = 0; i < message.length; i++) {
-          console.log('_devid: ' + message[i]);
           DevicesStatesService.add(message[i]);
         }
         vm.devState = DevicesStatesService.list;
       });
 
-      // Shared last save states from user devices
-      if (DevicesStatesService.list === undefined) {
-        vm.devState = DevicesService.query();
+      $scope.$on('$destroy', function () {
+        console.log('socket destruction');
+        // Save device state in shared object before leaving
+        var i;
+        for (i = 0; i < vm.devState.length; i++) {
+          DevicesStatesService.add(vm.devState[i]);
+        }
+        // Socket.removeListener('device status');
+      });
+    }
+
+    function requestHomeCondition() {
+      if (Socket.socket) {
+        console.log('Home condition requested');
+        // Socket.emit('condition_req', {});
       }
     }
 
